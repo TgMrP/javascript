@@ -10,7 +10,7 @@ import type {
   PrepareEmailAddressVerificationParams,
   PreparePhoneNumberVerificationParams,
   PrepareVerificationParams,
-  SignUpAuthenticateWithMetamaskParams,
+  SignUpAuthenticateWithWeb3Params,
   SignUpCreateParams,
   SignUpField,
   SignUpIdentificationField,
@@ -202,7 +202,7 @@ export class SignUp extends BaseResource implements SignUpResource {
 
   public authenticateWeb3Provider = async (
     provider: 'metamask' | 'coinbase',
-    params?: SignUpAuthenticateWithMetamaskParams,
+    params?: SignUpAuthenticateWithWeb3Params,
   ): Promise<SignUpResource> => {
     const identifier = await getWeb3Identifier(provider);
     return this.authenticateWithWeb3({
@@ -211,11 +211,11 @@ export class SignUp extends BaseResource implements SignUpResource {
       provider,
     });
   };
-  public authenticateWithMetamask = async (params?: SignUpAuthenticateWithMetamaskParams): Promise<SignUpResource> => {
+  public authenticateWithMetamask = async (params?: SignUpAuthenticateWithWeb3Params): Promise<SignUpResource> => {
     return this.authenticateWeb3Provider('metamask', params);
   };
 
-  public authenticateWithCoinbase = async (params?: SignUpAuthenticateWithMetamaskParams): Promise<SignUpResource> => {
+  public authenticateWithCoinbase = async (params?: SignUpAuthenticateWithWeb3Params): Promise<SignUpResource> => {
     return this.authenticateWeb3Provider('coinbase', params);
   };
 

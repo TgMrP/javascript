@@ -88,8 +88,8 @@ export interface SignUpResource extends ClerkResource {
     params: AuthenticateWithWeb3Params & { unsafeMetadata?: SignUpUnsafeMetadata },
   ) => Promise<SignUpResource>;
 
-  authenticateWithMetamask: (params?: SignUpAuthenticateWithMetamaskParams) => Promise<SignUpResource>;
-  authenticateWithCoinbase: (params?: SignUpAuthenticateWithMetamaskParams) => Promise<SignUpResource>;
+  authenticateWithMetamask: (params?: SignUpAuthenticateWithWeb3Params) => Promise<SignUpResource>;
+  authenticateWithCoinbase: (params?: SignUpAuthenticateWithWeb3Params) => Promise<SignUpResource>;
 }
 
 export type SignUpStatus = 'missing_requirements' | 'complete' | 'abandoned';
@@ -162,7 +162,7 @@ export type SignUpCreateParams = Partial<
 
 export type SignUpUpdateParams = SignUpCreateParams;
 
-export type SignUpAuthenticateWithMetamaskParams = {
+export type SignUpAuthenticateWithWeb3Params = {
   unsafeMetadata?: SignUpUnsafeMetadata;
 };
 
