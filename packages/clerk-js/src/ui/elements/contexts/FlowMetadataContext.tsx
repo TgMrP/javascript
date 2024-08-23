@@ -11,7 +11,8 @@ type FlowMetadata = {
     | 'createOrganization'
     | 'organizationSwitcher'
     | 'organizationList'
-    | 'oneTap';
+    | 'oneTap'
+    | 'waitlist';
   part?:
     | 'start'
     | 'emailCode'

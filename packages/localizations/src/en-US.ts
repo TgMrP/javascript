@@ -814,4 +814,10 @@ export const enUS: LocalizationResource = {
       title: 'Add web3 wallet',
     },
   },
+  waitlist: {
+    start: {
+      title: 'Join the waitlist',
+      subtitle: 'Enter your email address to join the waitlist.',
+    },
+  },
 } as const;
