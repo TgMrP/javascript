@@ -55,6 +55,7 @@ describe('useEnabledThirdPartyProviders', () => {
       'oauth_twitter',
       'oauth_x',
       'oauth_xero',
+      'oauth_huggingface',
     ]);
   });
 
