@@ -1,14 +1,34 @@
-import { useClerk } from '@clerk/shared/react';
+import { useClerk, useWaitlist } from '@clerk/shared/react';
+import type { JoinWaitlistParams } from '@clerk/types';
 
 import { descriptors, Flex, Flow, localizationKeys } from '../../customizables';
 import { Card, Header, withCardStateProvider } from '../../elements';
 import { useCardState } from '../../elements/contexts';
-import { useFormControl } from '../../utils';
+import { handleError, useFormControl } from '../../utils';
 import { WaitlistForm } from './WaitlistForm';
+
+const FieldKeys = ['emailAddress'];
+
+export type FieldKey = (typeof FieldKeys)[number];
+
+export type Field = {
+  disabled?: boolean;
+  /**
+   * Denotes if the corresponding input is required to be filled
+   */
+  required: boolean;
+};
+
+export type Fields = {
+  [key in FieldKey]: Field | undefined;
+};
 
 const _Waitlist = () => {
   const card = useCardState();
   const clerk = useClerk();
+  clerk.joinWaitlist;
+
+  const { joinWaitlist } = useWaitlist();
 
   const formState = {
     emailAddress: useFormControl('emailAddress', '', {
@@ -16,6 +36,23 @@ const _Waitlist = () => {
       label: localizationKeys('formFieldLabel__emailAddress'),
       placeholder: localizationKeys('formFieldInputPlaceholder__emailAddress'),
     }),
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    card.setLoading();
+    card.setError(undefined);
+
+    try {
+      const joinWaitlistParams: JoinWaitlistParams = { emailAddress: formState.emailAddress.value };
+
+      const data = await joinWaitlist(joinWaitlistParams);
+
+      console.log(data);
+    } catch (error) {
+      handleError(error, [], card.setError);
+    }
   };
 
   return (
@@ -32,7 +69,10 @@ const _Waitlist = () => {
             elementDescriptor={descriptors.main}
             gap={6}
           >
-            <WaitlistForm formState={formState} />
+            <WaitlistForm
+              handleSubmit={handleSubmit}
+              formState={formState}
+            />
           </Flex>
         </Card.Content>
         <Card.Footer>

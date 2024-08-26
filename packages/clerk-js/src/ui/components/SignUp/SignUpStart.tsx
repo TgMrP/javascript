@@ -179,7 +179,7 @@ function _SignUpStart(): JSX.Element {
     }
     setActiveCommIdentifierType(type);
   };
-
+  console.log(signUp);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

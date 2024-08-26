@@ -505,3 +505,10 @@ export interface PublicKeyCredentialRequestOptionsJSON {
   timeout: number;
   userVerification: 'discouraged' | 'preferred' | 'required';
 }
+
+export interface WaitlistJSON extends ClerkResourceJSON {
+  object: 'waitlist';
+  id: string;
+  created_at: number;
+  updated_at: number;
+}

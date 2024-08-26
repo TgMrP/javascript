@@ -33,6 +33,7 @@ import type {
   HandleEmailLinkVerificationParams,
   HandleOAuthCallbackParams,
   InstanceType,
+  JoinWaitlistParams,
   ListenerCallback,
   NavigateOptions,
   OrganizationListProps,
@@ -58,6 +59,7 @@ import type {
   UserProfileProps,
   UserResource,
   WaitlistProps,
+  WaitlistResource,
 } from '@clerk/types';
 
 import type { MountComponentRenderer } from '../ui/Components';
@@ -111,6 +113,7 @@ import {
   EmailLinkErrorCode,
   Environment,
   Organization,
+  Waitlist,
 } from './resources/internal';
 import { warnings } from './warnings';
 
@@ -1404,6 +1407,9 @@ export class Clerk implements ClerkInterface {
 
   public getOrganization = async (organizationId: string): Promise<OrganizationResource> =>
     Organization.get(organizationId);
+
+  public joinWaitlist = async ({ emailAddress }: JoinWaitlistParams): Promise<WaitlistResource> =>
+    Waitlist.join({ emailAddress });
 
   public updateEnvironment(environment: EnvironmentResource): asserts this is { environment: EnvironmentResource } {
     this.environment = environment;

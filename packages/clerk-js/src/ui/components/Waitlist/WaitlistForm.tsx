@@ -1,37 +1,20 @@
 import { Col, localizationKeys } from '../../customizables';
 import { Form } from '../../elements';
 import type { FormControlState } from '../../utils';
-
-const FieldKeys = ['emailAddress'];
-export type FieldKey = (typeof FieldKeys)[number];
-
-export type Field = {
-  disabled?: boolean;
-  /**
-   * Denotes if the corresponding input is required to be filled
-   */
-  required: boolean;
-};
-
-type Fields = {
-  [key in FieldKey]: Field | undefined;
-};
+import type { Fields } from './Waitlist';
 
 type WaitlistFormProps = {
+  handleSubmit: React.FormEventHandler;
   formState: Record<keyof Fields, FormControlState<any>>;
 };
 
 export const WaitlistForm = (props: WaitlistFormProps) => {
-  const { formState } = props;
+  const { formState, handleSubmit } = props;
 
   const fields: Fields = {
     emailAddress: {
       required: true,
     },
-  };
-
-  const handleSubmit = () => {
-    console.log('WaitlistForm');
   };
 
   return (

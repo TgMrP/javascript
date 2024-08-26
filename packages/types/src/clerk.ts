@@ -36,6 +36,7 @@ import type { SignInResource } from './signIn';
 import type { SignUpResource } from './signUp';
 import type { UserResource } from './user';
 import type { Autocomplete, DeepPartial, DeepSnakeToCamel } from './utils';
+import type { WaitlistResource } from './waitlist';
 
 export type SDKMetadata = {
   name: string;
@@ -512,6 +513,8 @@ export interface Clerk {
    * Handles a 401 response from Frontend API by refreshing the client and session object accordingly
    */
   handleUnauthenticated: () => Promise<unknown>;
+
+  joinWaitlist: (params: JoinWaitlistParams) => Promise<WaitlistResource>;
 }
 
 export type HandleOAuthCallbackParams = TransferableOption &
@@ -1134,6 +1137,10 @@ export interface CreateOrganizationParams {
   name: string;
   slug?: string;
 }
+
+export type JoinWaitlistParams = {
+  emailAddress: string;
+};
 
 export interface AuthenticateWithMetamaskParams {
   customNavigate?: (to: string) => Promise<unknown>;

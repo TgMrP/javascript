@@ -538,7 +538,6 @@ export class IsomorphicClerk implements IsomorphicLoadedClerk {
     });
 
     this.premountWaitlistNodes.forEach((props: WaitlistProps, node: HTMLDivElement) => {
-      console.log('pre mounting waitlist');
       clerkjs.mountWaitlist(node, props);
     });
 
@@ -854,12 +853,9 @@ export class IsomorphicClerk implements IsomorphicLoadedClerk {
   };
 
   mountWaitlist = (node: HTMLDivElement, props: WaitlistProps): void => {
-    console.log('mounting waitlist');
     if (this.clerkjs && this.#loaded) {
-      console.log('mounting waitlist 1');
       this.clerkjs.mountWaitlist(node, props);
     } else {
-      console.log('mounting waitlist 2');
       this.premountWaitlistNodes.set(node, props);
     }
   };
