@@ -391,6 +391,8 @@ export type ElementsConfig = {
   qrCodeRow: WithOptions;
   qrCodeContainer: WithOptions;
 
+  // TODO: Add waitlist appearance
+
   // default descriptors
   badge: WithOptions<'primary' | 'actionRequired'>;
   notificationBadge: WithOptions;
@@ -629,6 +631,7 @@ export type OrganizationSwitcherTheme = Theme;
 export type OrganizationListTheme = Theme;
 export type OrganizationProfileTheme = Theme;
 export type CreateOrganizationTheme = Theme;
+export type WaitlistTheme = Theme;
 
 export type Appearance<T = Theme> = T & {
   /**
@@ -667,4 +670,8 @@ export type Appearance<T = Theme> = T & {
    * Theme overrides that only apply to the `<CreateOrganization />` component
    */
   oneTap?: T;
+  /**
+   * Theme overrides that only apply to the `<Waitlist />` component
+   */
+  waitlist?: T;
 };

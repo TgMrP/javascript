@@ -154,6 +154,7 @@ const componentNodes = Object.freeze({
   UserProfile: 'userProfileModal',
   OrganizationProfile: 'organizationProfileModal',
   CreateOrganization: 'createOrganizationModal',
+  Waitlist: 'waitlist',
 }) as any;
 
 const Components = (props: ComponentsProps) => {

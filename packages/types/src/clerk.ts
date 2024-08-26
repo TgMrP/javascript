@@ -312,6 +312,19 @@ export interface Clerk {
   unmountOrganizationList: (targetNode: HTMLDivElement) => void;
 
   /**
+   * Mount a waitlist at the target element.
+   * @param targetNode Target to mount the Waitlist component.
+   * @param props Configuration parameters.
+   */
+  mountWaitlist: (targetNode: HTMLDivElement, props?: WaitlistProps) => void;
+
+  /**
+   * Unmount the Waitlist component from the target node.
+   * @param targetNode Target node to unmount the Waitlist component from.
+   */
+  unmountWaitlist: (targetNode: HTMLDivElement) => void;
+
+  /**
    * Register a listener that triggers a callback each time important Clerk resources are changed.
    * Allows to hook up at different steps in the sign up, sign in processes.
    *
@@ -1080,6 +1093,13 @@ export type OrganizationListProps = {
    * @default false
    */
   hideSlug?: boolean;
+};
+
+export type WaitlistProps = {
+  /**
+   * Full URL or path to navigate after successful waitlist submission.
+   */
+  redirectUrl?: string;
 };
 
 export interface HandleEmailLinkVerificationParams {

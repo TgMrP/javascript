@@ -57,6 +57,7 @@ import type {
   UserButtonProps,
   UserProfileProps,
   UserResource,
+  WaitlistProps,
 } from '@clerk/types';
 
 import type { MountComponentRenderer } from '../ui/Components';
@@ -676,6 +677,25 @@ export class Clerk implements ClerkInterface {
   };
 
   public unmountUserButton = (node: HTMLDivElement): void => {
+    this.assertComponentsReady(this.#componentControls);
+    void this.#componentControls?.ensureMounted().then(controls => controls.unmountComponent({ node }));
+  };
+
+  public mountWaitlist = (node: HTMLDivElement, props?: WaitlistProps) => {
+    this.assertComponentsReady(this.#componentControls);
+    void this.#componentControls?.ensureMounted({ preloadHint: 'Waitlist' }).then(controls =>
+      controls.mountComponent({
+        name: 'Waitlist',
+        appearanceKey: 'waitlist',
+        node,
+        props,
+      }),
+    );
+
+    this.telemetry?.record(eventPrebuiltComponentMounted('Waitlist', props));
+  };
+
+  public unmountWaitlist = (node: HTMLDivElement): void => {
     this.assertComponentsReady(this.#componentControls);
     void this.#componentControls?.ensureMounted().then(controls => controls.unmountComponent({ node }));
   };
